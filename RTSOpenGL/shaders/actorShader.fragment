@@ -1,0 +1,13 @@
+#version 330 core
+
+in vec2 UV;
+in vec3 N;
+
+uniform float health;
+
+out vec4 outColor;
+
+void main()
+{	
+	outColor = vec4(1 - health, health, 0.0f, 1.0);
+}
