@@ -27,9 +27,6 @@
     <ClCompile Include="ResourseManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Program.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PerlinNoise.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -57,6 +54,9 @@
     <ClCompile Include="HitBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ShaderManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h">
@@ -80,9 +80,6 @@
     <ClInclude Include="Node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Program.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ResourseManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -95,5 +92,40 @@
     <ClInclude Include="WindowManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ShaderManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\actorShader.fragment">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shaders\actorShader.vertex">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shaders\guiLinesShader.fragment">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shaders\guiLinesShader.vertex">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shaders\guiShader.fragment">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shaders\guiShader.vertex">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shaders\shader.fragment">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shaders\shader.vertex">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shaders\shaderTerrain.fragment">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shaders\shaderTerrain.vertex">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -1,13 +1,15 @@
 #pragma once
 
 #include "Mesh.h"
+#include <glm\glm.hpp>
 
-class Terrain : public Mesh
+
+class Terrain
 {
-	static const unsigned int side = 129;
-	static const unsigned int size = side*side;
+	GLuint m_vao, m_ebo;
+	GLuint m_vbo[2];
 public:
 	Terrain();
 	~Terrain();
+	void draw();
 };
-

@@ -9,7 +9,7 @@
 #include <glm\glm.hpp>
 #include <glm\gtx\transform.hpp>
 
-#include "Program.h"
+#include "ShaderManager.h"
 #include "Controls.h"
 #include "Camera.h"
 
@@ -22,12 +22,14 @@
 
 #include "HitBox.h"
 
+#include <thread>
+#include <chrono>
+
 using namespace std;
 
 Camera camera;
 
 
-GLuint loadBMP_custom(const char * imagepath);
 void collision(Actor &a, Actor &b);
 
 
@@ -36,7 +38,7 @@ int main()
 	WindowManager::init();
 	Controls::init();
 	ResourceManager::init();
-	Program::init();
+	ShaderManager::init();
 	
 	Scene scene;
 
@@ -55,14 +57,11 @@ int main()
 
 	byte active = 0;
 
-	Terrain t;
-	Node terrain(t);
-
-	//=======================END GUI===================
+	std::chrono::high_resolution_clock::time_point time_start;
+	std::chrono::high_resolution_clock::time_point time_now = std::chrono::high_resolution_clock::now();
 
 	do {
-		
-		camera.update();
+		time_start = std::chrono::high_resolution_clock::now();
 		
 		// = = = = = = = = Render = = = = = = = = = =
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -70,23 +69,23 @@ int main()
 		scene.update();
 		scene.draw();
 
-		//Textures
-		/*
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, texture[0]);
-		glUniform1i(glGetUniformLocation(Program::mainProgram, "texture"), 0);
-		*/
+		glUseProgram(ShaderManager::terrainProgram);
+
 
 		//Finish Drawing
 		glBindVertexArray(0);
 		
 		//Update systems
 		Controls::update();
+		
+		time_now = std::chrono::high_resolution_clock::now();
+		std::this_thread::sleep_for(std::chrono::milliseconds(15) - (time_now - time_start));
+
 	} while (WindowManager::update());
 
 	WindowManager::close();
 	ResourceManager::close();
-	Program::close();
+	ShaderManager::close();
 
 	return 0;
 }

@@ -91,7 +91,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
@@ -161,7 +161,7 @@
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="PerlinNoise.cpp" />
-    <ClCompile Include="Program.cpp" />
+    <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="ResourseManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Terrain.cpp" />
@@ -175,11 +175,23 @@
     <ClInclude Include="HitBox.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Node.h" />
-    <ClInclude Include="Program.h" />
+    <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="ResourseManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="WindowManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\actorShader.fragment" />
+    <None Include="shaders\actorShader.vertex" />
+    <None Include="shaders\guiLinesShader.fragment" />
+    <None Include="shaders\guiLinesShader.vertex" />
+    <None Include="shaders\guiShader.fragment" />
+    <None Include="shaders\guiShader.vertex" />
+    <None Include="shaders\shader.fragment" />
+    <None Include="shaders\shader.vertex" />
+    <None Include="shaders\shaderTerrain.fragment" />
+    <None Include="shaders\shaderTerrain.vertex" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

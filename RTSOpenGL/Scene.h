@@ -2,7 +2,7 @@
 #include "Actor.h"
 #include "Camera.h"
 #include "Terrain.h"
-#include "Program.h"
+#include "ShaderManager.h"
 #include "GUI.h"
 
 struct Squad
@@ -17,10 +17,8 @@ struct Squad
 
 class Scene
 {
-	
+	Terrain terra;
 	Camera m_camera;
-	Terrain m_terrain;
-	Node m_terrainNode;
 	Squad m_squad;
 	ubyte m_numberOfActors;
 	ubyte m_active;

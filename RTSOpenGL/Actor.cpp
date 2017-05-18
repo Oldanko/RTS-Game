@@ -13,9 +13,9 @@ const glm::vec3 Actor::CENTER_STAND	= glm::vec3(0.0, 0.95f, 0.0);
 const glm::vec3 Actor::CENTER_CROUCH = glm::vec3(0.0, 0.5, 0.0);
 const glm::vec3 Actor::CENTER_PRONE	= glm::vec3(0.0, 0.2, 0.0);
 
-const float Actor::SPEED_STAND		= 0.01f;
-const float Actor::SPEED_CROUCH		= 0.005f;
-const float Actor::SPEED_PRONE		= 0.002f;
+const float Actor::SPEED_STAND		= 0.1f;
+const float Actor::SPEED_CROUCH		= 0.05f;
+const float Actor::SPEED_PRONE		= 0.02f;
 
 const HitBox Actor::HITBOX_STAND = HitBox(glm::vec3(0.25, 0.85, 0.3), glm::vec3(0, 0.85, 0));
 const HitBox Actor::HITBOX_CROUCH = HitBox(glm::vec3(0.3, 0.5, 0.4), glm::vec3(0, 0.5, 0));

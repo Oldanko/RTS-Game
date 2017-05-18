@@ -1,48 +1,64 @@
 #include "Terrain.h"
 
 
+float linearInterpolaton(float a, float b, float x)
+{
+	return a*(1 - x) + b*x;
+}
 
 Terrain::Terrain()
 {
-	m_vertices = std::vector<GLfloat>(size * 8);
-	m_elements = std::vector<GLuint>((side - 1)*(side - 1) * 6);
 
-	for (int i = 0; i < side; i++)
-		for (int j = 0; j < side; j++)
-		{
-			int id = (i*side + j) * 8;
-			m_vertices[id] = i;
-			m_vertices[id + 1] = 0;
-			m_vertices[id + 2] = j;
-			m_vertices[id + 3] = i;
-			m_vertices[id + 4] = j;
-			m_vertices[id + 5] = 0;
-			m_vertices[id + 6] = 1;
-			m_vertices[id + 7] = 0;
-		}
+	GLfloat grid[] =
+	{
+		-10.0f, -10.0f,
+		10.0f, -10.0f,
+		-10.0f, 10.0f,
+		10.0f, 10.0f
+	};
+	GLfloat heightMap[] = { 1, 1, 1, 1 };
 
-	for (int i = 0; i < side-1; i++)
-		for (int j = 0; j < side-1; j++)
-		{
-			int id = (i*(side-1) + j); //i*side + j
-			m_elements[id * 6] = i*side + j;
-			m_elements[id * 6 + 1] = i*side + j + 1;
-			m_elements[id * 6 + 2] = i*side + j + side;
-			m_elements[id * 6 + 3] = i*side + j + side;
-			m_elements[id * 6 + 4] = i*side + j + 1;
-			m_elements[id * 6 + 5] = i*side + j + side + 1;
-		}
+	GLuint indices[] = { 0, 1, 2, 1, 2, 3 };
+	
+	glGenBuffers(2, m_vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, m_vbo[0]);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(grid), grid, GL_STATIC_DRAW); 
 
-	glGenBuffers(1, &m_vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
-	glBufferData(GL_ARRAY_BUFFER, m_vertices.size() * sizeof(GLfloat), &m_vertices[0], GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, m_vbo[1]);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(heightMap), heightMap, GL_STATIC_DRAW); 
 
 	glGenBuffers(1, &m_ebo);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_elements.size() * sizeof(GLuint), &m_elements[0], GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+
+
+	glGenVertexArrays(1, &m_vao);
+	/*glBindVertexArray(m_vao);
+
+	glBindBuffer(GL_ARRAY_BUFFER, m_vbo[0]);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), (GLvoid*)0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, m_vbo[1]);
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, sizeof(GLfloat), (GLvoid*)0);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
+
+	glBindVertexArray(0);*/
 }
 
 
 Terrain::~Terrain()
 {
+	glDeleteVertexArrays(1, &m_vao);
+	glDeleteBuffers(2, m_vbo);
+	glDeleteBuffers(1, &m_ebo);
+}
+
+void Terrain::draw()
+{
+	glBindVertexArray(m_vao);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 }

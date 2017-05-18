@@ -1,7 +1,6 @@
 #include <math.h>
 
 float noise(float x, float y);
-float linearInterpolaton(float a, float b, float x);
 float cosineInterpolate(float a, float b, float x);
 float perlinNoise(float x, float y);
 float perlinNoise3D(float x, float y, float z);
@@ -21,11 +20,6 @@ float noise3(float x, float y, float z)
 	n = (n << 13) ^ n;
 	return (1.0 - ((n * (n * n * 15731 + 789221) + 1376312589)
 		& 0x7fffffff) / 1073741824.0);
-}
-
-float linearInterpolaton(float a, float b, float x)
-{
-	return a*(1 - x) + b*x;
 }
 
 float cosineInterpolate(float a, float b, float x)
